@@ -63,7 +63,10 @@ Examples:
   Gateway deployed to [Maxihost MH1][maxihost-mh1] São Paulo (Brazil) data
   center
 - `bb3f6ab0-2fc5-40b8-9c5e-58005b35b6c7.ovh-bhs.gateway.holo.host` for Gateway
-  deployed to OVH Beauharnois (Canada) region (can't pick specific data center)
+  deployed to OVH Beauharnois (Canada) region
+  
+  *(This uses region because OVH doesn't allow to pick specific data center
+    during provisioning)*
 - `af83955e-b4c2-49f7-a6d8-0763d89e097b.packet-nrt1.gateway.holo.host` for
   Gateway instance deployed to Packet NRT1 Tokyo (Japan) data center
 
