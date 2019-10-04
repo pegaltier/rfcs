@@ -1,0 +1,60 @@
+# HP Admin API Document Draft
+
+## Features not covered 
+
+### Ports
+
+Since we are tunneling to the machine, it is recommended to deprecate the requirement for changing ports. The user should not have any need to change ports, and updating from hp admin will also require updating DNS settings each time ports are changed. Recommended to remove this feature unless we serve these applications on local network.
+
+### Factory reset
+
+It is impossible to create the feature that is implied in the wireframe, because it would require hardware that supports accessing the boatloader in a secure manner. Our hardware does not support this currently.
+
+Instead, we recommend offering the user instructions to download a rescue/restore image, and follow instructions to reset their machine by copying this file to the USB and then insert into the holoport, and restart the machine.
+
+## Authorization
+
+Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
+
+Example: `X-Holo-Admin-Signature: 1246b84985e1ab5f83f4ec2bdf271114666fd3d9e24d12981a3c861b9ed523c6`
+
+## Endpoints
+
+### `GET /v1`
+
+#### `200 OK`
+
+```json
+{
+    "read_only": {
+        "holo_nixpkgs_rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
+        "zerotier": {
+            // `zerotier-cli -j info` output
+        }
+    },
+    "read_write": {
+        "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg",
+        "email": "sam.rose@holo.host",
+        "name": "Arthur Brock",
+        "public_key": "HcSCi4Kkx3srC3xgdy8IuhXk6mIVd7o98rKnj6nr8ODohnrooj9t9K9ufdvph5z",
+        "ssh_access": true
+    }
+}
+```
+
+#### `401 Unauthorized`
+
+### `POST /v1`
+
+ Payload can only contain `read_write` fields from `GET /v1` response:
+ 
+```json
+{
+  "public_key": "HcSCi4Kkx3srC3xgdy8IuhXk6mIVd7o98rKnj6nr8ODohnrooj9t9K9ufdvph5z",
+  "ssh_access": false
+}
+```
+
+#### `200 OK`
+#### `400 Bad Request`
+#### `401 Unauthorized`
