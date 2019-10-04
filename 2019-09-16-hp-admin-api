@@ -36,7 +36,7 @@ Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
         "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg",
         "email": "sam.rose@holo.host",
         "name": "Arthur Brock",
-        "public_key": "HcSCi4Kkx3srC3xgdy8IuhXk6mIVd7o98rKnj6nr8ODohnrooj9t9K9ufdvph5z",
+        "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
         "ssh_access": true
     }
 }
@@ -50,8 +50,8 @@ Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
  
 ```json
 {
-  "public_key": "HcSCi4Kkx3srC3xgdy8IuhXk6mIVd7o98rKnj6nr8ODohnrooj9t9K9ufdvph5z",
-  "ssh_access": false
+    "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
+    "ssh_access": false
 }
 ```
 
