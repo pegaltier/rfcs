@@ -16,7 +16,7 @@ Instead, we recommend offering the user instructions to download a rescue/restor
 
 Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
 
-Example: `X-Holo-Admin-Signature: 1246b84985e1ab5f83f4ec2bdf271114666fd3d9e24d12981a3c861b9ed523c6`
+Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
 ## Endpoints
 
