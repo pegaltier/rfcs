@@ -1,5 +1,9 @@
 # HP Admin API Document Draft
 
+## Protocol
+
+This api supports HTTP/HTTPS protocol
+
 ## Features not covered 
 
 ### Ports
