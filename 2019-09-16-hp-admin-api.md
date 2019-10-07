@@ -62,6 +62,17 @@ Updates `holo-config.json`.
 ```
 
 #### `200 OK`
+
+```json
+{
+    "admin": {
+        "email": "sam.rose@holo.host",
+        "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
+    },
+    "ssh_access": false
+}
+```
+
 #### `400 Bad Request`
 #### `401 Unauthorized`
 
