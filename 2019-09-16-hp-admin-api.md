@@ -4,17 +4,27 @@
 
 ### Ports
 
-Since we are tunneling to the machine, it is recommended to deprecate the requirement for changing ports. The user should not have any need to change ports, and updating from hp admin will also require updating DNS settings each time ports are changed. Recommended to remove this feature unless we serve these applications on local network.
+Since we are tunneling to the machine, it is recommended to deprecate the
+requirement for changing ports. The user should not have any need to change
+ports, and updating from hp admin will also require updating DNS settings each
+time ports are changed. Recommended to remove this feature unless we serve
+these applications on local network.
 
 ### Factory reset
 
-It is impossible to create the feature that is implied in the wireframe, because it would require hardware that supports accessing the boatloader in a secure manner. Our hardware does not support this currently.
+It is impossible to create the feature that is implied in the wireframe,
+because it would require hardware that supports accessing the boatloader in a
+secure manner. Our hardware does not support this currently.
 
-Instead, we recommend offering the user instructions to download a rescue/restore image, and follow instructions to reset their machine by copying this file to the USB and then insert into the holoport, and restart the machine.
+Instead, we recommend offering the user instructions to download a
+rescue/restore image, and follow instructions to reset their machine by copying
+this file to the USB and then insert into the holoport, and restart the
+machine.
 
 ## Authorization
 
-Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
+Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by
+Base64-encoded Ed25519 signature.
 
 Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
@@ -24,13 +34,13 @@ Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
 #### `200 OK`
 
-Layout of this endpoint matches `holo-config.json`, with `seed` field filtered out.
+Returns `holo-config.json` data with `seed` field filtered out.
 
 ```json
 {
-    "admins": {
+    "admin": {
         "email": "sam.rose@holo.host",
-        "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
+        "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8"
     },
     "ssh_access": true
 }
@@ -47,11 +57,27 @@ Updates `holo-config.json`.
     "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
     "ssh_access": false,
     "avatar_url": "<url>",
-    "name": "Holo Naut"
+    "name": "Holo Naut",
+    "admin": {
+        "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
+    },
 }
 ```
 
 #### `200 OK`
+
+```json
+{
+    "admin": {
+        "email": "sam.rose@holo.host",
+        "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
+    },
+    "ssh_access": false,
+    "avatar_url": "<url>",
+    "name": "Holo Naut"
+}
+```
+
 #### `400 Bad Request`
 #### `401 Unauthorized`
 
@@ -59,7 +85,7 @@ Updates `holo-config.json`.
 
 #### `200 OK`
 
-Prints immutable data with HoloPort status data.
+Prints immutable HoloPort status data.
 
 ```json
 {
