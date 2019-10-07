@@ -59,7 +59,7 @@ Updates `holo-config.json`.
 
 #### `200 OK`
 
-Prints immutable data with HoloPort status data.
+Prints immutable HoloPort status data.
 
 ```json
 {
