@@ -1,9 +1,5 @@
 # HP Admin API Document Draft
 
-## Protocol
-
-This api supports HTTP/HTTPS protocol
-
 ## Features not covered 
 
 ### Ports
@@ -58,13 +54,12 @@ Updates `holo-config.json`.
 
 ```json
 {
-    "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
-    "ssh_access": false,
-    "avatar_url": "<url>",
-    "name": "Holo Naut",
     "admin": {
+        "avatar_url": "<url>",
+        "name": "Holo Naut",
         "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
     },
+    "ssh_access": false,
 }
 ```
 
@@ -73,12 +68,12 @@ Updates `holo-config.json`.
 ```json
 {
     "admin": {
+        "avatar_url": "<url>",
         "email": "sam.rose@holo.host",
+        "name": "Holo Naut",
         "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
     },
-    "ssh_access": false,
-    "avatar_url": "<url>",
-    "name": "Holo Naut"
+    "ssh_access": false
 }
 ```
 
@@ -96,15 +91,8 @@ Prints immutable HoloPort status data.
     "holo_nixpkgs": {
       "url": "https://hydra.holo.host/channel/custom/holo-nixpkgs/develop/holo-nixpkgs",
       "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
-    }, //immutable data
+    },
     "zerotier": {
         // `zerotier-cli -j info` output
-    } //immutable data
-    "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg", //this data is writeable
-    "email": "person@holo.host", //immutable data
-    "name": "Holo Naut",//this data is writeable
-    "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8", //this data is writeable
-    "ssh_access": true, //this data is writeable
-    "holoport_url": "<url>", //immutable data
-    "holoport_name": "<name>" 	//immutable data
+    }
 }
