@@ -28,9 +28,9 @@ Layout of this endpoint matches `holo-config.json`, with `seed` field filtered o
 
 ```json
 {
-    "admins": {
+    "admin": {
         "email": "sam.rose@holo.host",
-        "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
+        "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8"
     },
     "ssh_access": true
 }
@@ -44,7 +44,9 @@ Updates `holo-config.json`.
 
 ```json
 {
-    "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
+    "admin": {
+        "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
+    },
     "ssh_access": false
 }
 ```
