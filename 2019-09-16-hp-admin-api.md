@@ -42,6 +42,7 @@ Returns `holo-config.json` data with `seed` field filtered out.
         "email": "sam.rose@holo.host",
         "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8"
     },
+    "name": "My HoloPort",
     "ssh_access": true
 }
 ```
@@ -73,6 +74,7 @@ Updates `holo-config.json`.
         "name": "Holo Naut",
         "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
     },
+    "name": "My HoloPort",
     "ssh_access": false
 }
 ```
