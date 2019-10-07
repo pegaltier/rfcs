@@ -45,7 +45,9 @@ Updates `holo-config.json`.
 ```json
 {
     "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
-    "ssh_access": false
+    "ssh_access": false,
+    "avatar_url": "<url>",
+    "name": "Holo Naut"
 }
 ```
 
@@ -64,15 +66,15 @@ Prints immutable data with HoloPort status data.
     "holo_nixpkgs": {
       "url": "https://hydra.holo.host/channel/custom/holo-nixpkgs/develop/holo-nixpkgs",
       "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
-    },
+    }, //immutable data
     "holoport_network_id": {
         // `zerotier-cli -j info` output
-    }
-    "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg", 
-    "email": "person@holo.host",
-    "name": "Holo Naut",
-    "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
-    "ssh_access": true,
-    "holoport_url": "<url>",
-    "holoport_name": "<name>", 	
+    } //immutable data
+    "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg", //this data is writeable
+    "email": "person@holo.host", //immutable data
+    "name": "Holo Naut",//this data is writeable
+    "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8", //this data is writeable
+    "ssh_access": true, //this data is writeable
+    "holoport_url": "<url>", //immutable data
+    "holoport_name": "<name>" 	//immutable data
 }
