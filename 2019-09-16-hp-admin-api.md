@@ -4,17 +4,27 @@
 
 ### Ports
 
-Since we are tunneling to the machine, it is recommended to deprecate the requirement for changing ports. The user should not have any need to change ports, and updating from hp admin will also require updating DNS settings each time ports are changed. Recommended to remove this feature unless we serve these applications on local network.
+Since we are tunneling to the machine, it is recommended to deprecate the
+requirement for changing ports. The user should not have any need to change
+ports, and updating from hp admin will also require updating DNS settings each
+time ports are changed. Recommended to remove this feature unless we serve
+these applications on local network.
 
 ### Factory reset
 
-It is impossible to create the feature that is implied in the wireframe, because it would require hardware that supports accessing the boatloader in a secure manner. Our hardware does not support this currently.
+It is impossible to create the feature that is implied in the wireframe,
+because it would require hardware that supports accessing the boatloader in a
+secure manner. Our hardware does not support this currently.
 
-Instead, we recommend offering the user instructions to download a rescue/restore image, and follow instructions to reset their machine by copying this file to the USB and then insert into the holoport, and restart the machine.
+Instead, we recommend offering the user instructions to download a
+rescue/restore image, and follow instructions to reset their machine by copying
+this file to the USB and then insert into the holoport, and restart the
+machine.
 
 ## Authorization
 
-Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
+Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by
+Base64-encoded Ed25519 signature.
 
 Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
@@ -24,7 +34,7 @@ Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
 #### `200 OK`
 
-Layout of this endpoint matches `holo-config.json`, with `seed` field filtered out.
+Returns `holo-config.json` data with `seed` field filtered out.
 
 ```json
 {
