@@ -1,4 +1,4 @@
-# HP Admin API
+# HP Admin HTTP API
 
 ## Features not covered 
 
