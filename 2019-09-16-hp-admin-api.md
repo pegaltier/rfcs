@@ -1,4 +1,4 @@
-# HP Admin API Document Draft
+# HP Admin API
 
 ## Features not covered 
 
