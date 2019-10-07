@@ -97,7 +97,7 @@ Prints immutable HoloPort status data.
       "url": "https://hydra.holo.host/channel/custom/holo-nixpkgs/develop/holo-nixpkgs",
       "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
     }, //immutable data
-    "holoport_network_id": {
+    "zerotier": {
         // `zerotier-cli -j info` output
     } //immutable data
     "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg", //this data is writeable
