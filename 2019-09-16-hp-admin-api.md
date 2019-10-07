@@ -69,7 +69,6 @@ Updates `holo-config.json`.
 ```json
 {
     "admin": {
-        "avatar_url": "<url>",
         "email": "sam.rose@holo.host",
         "name": "Holo Naut",
         "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
