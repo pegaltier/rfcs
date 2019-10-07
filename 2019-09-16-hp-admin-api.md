@@ -65,7 +65,14 @@ Prints immutable data with HoloPort status data.
       "url": "https://hydra.holo.host/channel/custom/holo-nixpkgs/develop/holo-nixpkgs",
       "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
     },
-    "zerotier": {
+    "holoport_network_id": {
         // `zerotier-cli -j info` output
     }
+    "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg", 
+    "email": "person@holo.host",
+    "name": "Holo Naut",
+    "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
+    "ssh_access": true,
+    "holoport_url": "<url>",
+    "holoport_name": "<name>", 	
 }
