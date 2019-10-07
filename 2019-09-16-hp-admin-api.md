@@ -20,34 +20,28 @@ Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
 ## Endpoints
 
-### `GET /v1`
+### `GET /v1/config`
 
 #### `200 OK`
 
+Layout of this endpoint matches `holo-config.json`, with `seed` field filtered out.
+
 ```json
 {
-    "read_only": {
-        "holo_nixpkgs_rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
-        "zerotier": {
-            // `zerotier-cli -j info` output
-        }
-    },
-    "read_write": {
-        "avatar_url": "https://holo.host/wp-content/uploads/Arthur-Brock.jpg",
+    "admins": {
         "email": "sam.rose@holo.host",
-        "name": "Arthur Brock",
         "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
-        "ssh_access": true
-    }
+    },
+    "ssh_access": true
 }
 ```
 
 #### `401 Unauthorized`
 
-### `POST /v1`
+### `POST /v1/config`
 
- Payload can only contain `read_write` fields from `GET /v1` response:
- 
+Updates `holo-config.json`.
+
 ```json
 {
     "public_key": "Tw7179WYi/zSRLRSb6DWgZf4dhw5+b0ACdlvAw3WYH8",
@@ -58,3 +52,20 @@ Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 #### `200 OK`
 #### `400 Bad Request`
 #### `401 Unauthorized`
+
+### `GET /v1/status`
+
+#### `200 OK`
+
+Prints immutable data with HoloPort status data.
+
+```json
+{
+    "holo_nixpkgs": {
+      "url": "https://hydra.holo.host/channel/custom/holo-nixpkgs/develop/holo-nixpkgs",
+      "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
+    },
+    "zerotier": {
+        // `zerotier-cli -j info` output
+    }
+}
