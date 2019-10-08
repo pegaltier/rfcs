@@ -1,32 +1,24 @@
 # HP Admin HTTP API
 
-## Features not covered 
+## HoloPort Admin access
 
-### Ports
+HoloPort will be listening for HP Admin related calls on port 443, because those calls arrive straight from user's device therefore there's no service on the way for port rewrite.
 
-Since we are tunneling to the machine, it is recommended to deprecate the
-requirement for changing ports. The user should not have any need to change
-ports, and updating from hp admin will also require updating DNS settings each
-time ports are changed. Recommended to remove this feature unless we serve
-these applications on local network.
+HP Admin service needs to expose following functions:
+- serve static files of the HP Admin UI under `/ui/`
+- expose HP management API under `/api/v1/` (auth required)
+- expose endpoint for websocket handshake under `/` (auth required)
+- reject any other requests
 
-### Factory reset
+### Authorization
 
-It is impossible to create the feature that is implied in the wireframe,
-because it would require hardware that supports accessing the boatloader in a
-secure manner. Our hardware does not support this currently.
+Port 443 is open to internet therefore access authorization is of a high importance. 
 
-Instead, we recommend offering the user instructions to download a
-rescue/restore image, and follow instructions to reset their machine by copying
-this file to the USB and then insert into the holoport, and restart the
-machine.
-
-## Authorization
-
-Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by
-Base64-encoded Ed25519 signature.
+Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
 
 Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
+
+This authorization needs to be calculated in the nginx (or other service responsible for routing traffic) because Holochain Conductor (that receives websocket traffic) does not have capability for authorization check. 
 
 ## Endpoints
 
@@ -104,3 +96,24 @@ Prints immutable HoloPort status data.
         // `zerotier-cli -j info` output
     }    
 }
+
+## Features not covered 
+
+### HoloPort networking ports
+
+Since we are tunneling to the machine, it is recommended to deprecate the
+requirement for changing ports. The user should not have any need to change
+ports, and updating from hp admin will also require updating DNS settings each
+time ports are changed. Recommended to remove this feature unless we serve
+these applications on local network.
+
+### Factory reset
+
+It is impossible to create the feature that is implied in the wireframe,
+because it would require hardware that supports accessing the bootloader in a
+secure manner. Our hardware does not support this currently.
+
+Instead, we recommend offering the user instructions to download a
+rescue/restore image, and follow instructions to reset their machine by copying
+this file to the USB and then insert into the holoport, and restart the
+machine.
