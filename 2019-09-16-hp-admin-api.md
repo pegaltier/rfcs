@@ -44,7 +44,9 @@ Returns `holo-config.json` data with `seed` field filtered out.
     },
     "holoportos": {
         "network": "live",
-        "sshAccess": true
+        "sshAccess": true,
+        "os_version": "1.2.3",
+        "os_latest": "1.3.0"
     },
     "name": "My HoloPort"
 }
@@ -104,3 +106,17 @@ Prints immutable HoloPort status data.
         // `zerotier-cli -j info` output
     }    
 }
+```
+
+### `POST /v1/update-os`
+
+Forces an os version updates.
+
+No params passed. There's a world where we pass the os-version and it installs that, but that's beyond hAppy team needs for launch.
+
+#### `200 OK`
+
+Returns the same `holo-config.json` file as `/v1/config`
+
+#### `400 Bad Request`
+#### `401 Unauthorized`
