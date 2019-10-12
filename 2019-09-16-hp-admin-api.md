@@ -108,9 +108,9 @@ Prints immutable HoloPort status data.
 }
 ```
 
-### `POST /v1/update-os`
+### `POST /v1/upgrade`
 
-Forces an os version updates.
+Forces an os version upgrade, which maps onto `nixos-rebuild --upgrade switch`
 
 No params passed. There's a world where we pass the os-version and it installs that, but that's beyond hAppy team needs for launch.
 
