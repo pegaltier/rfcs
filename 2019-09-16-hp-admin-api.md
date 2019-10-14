@@ -128,9 +128,6 @@ Forces an os version upgrade, which maps onto `nixos-rebuild --upgrade switch`
 No params passed. There's a world where we pass the os-version and it installs that, but that's beyond hAppy team needs for launch.
 
 #### `200 OK`
-
-Returns the same `holo-config.json` file as `/v1/config`
-
 #### `400 Bad Request`
 #### `401 Unauthorized`
 
