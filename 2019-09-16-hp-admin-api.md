@@ -92,7 +92,7 @@ Updates `holo-config.json`.
 
 #### `200 OK`
 
-Prints immutable HoloPort status data.
+Prints immutable HoloPort status data. `zerotier` field is verbatim `zerotier-cli -j info` output.
 
 ```json
 {
@@ -101,6 +101,27 @@ Prints immutable HoloPort status data.
       "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
     },
     "zerotier": {
-        // `zerotier-cli -j info` output
-    }    
+        "address": "2f07044b7a",  
+        "clock": 1571075895334, 
+        "config": { 
+            "physical": null, 
+            "settings": { 
+               "allowTcpFallbackRelay": true, 
+                "portMappingEnabled": true, 
+                "primaryPort": 9993, 
+                "softwareUpdate": "disable", 
+                "softwareUpdateChannel": "release" 
+            }
+        }, 
+        "online": true, 
+        "planetWorldId": 149604618, 
+        "planetWorldTimestamp": 1567801551272, 
+        "publicIdentity": "2f07044b7a:0:505688f5c97313e5c7e34547e49a6ac46a05746b2e3faad724103b8ed34a4b108e15d08051db09eedd53ed089b19a5bfae9b1afdb7a9c65ad6f8aa9d98e4f2f2", 
+        "tcpFallbackActive": false, 
+        "version": "1.2.12", 
+        "versionBuild": 0, 
+        "versionMajor": 1, 
+        "versionMinor": 2, 
+        "versionRev": 12
+    }
 }
