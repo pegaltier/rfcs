@@ -36,9 +36,7 @@ Returns `holo-config.json` data with `seed` field filtered out.
     },
     "holoportos": {
         "network": "live",
-        "sshAccess": true,
-        "os_version": "1.2.3",
-        "os_latest": "1.3.0"
+        "sshAccess": true
     },
     "name": "My HoloPort"
 }
@@ -86,13 +84,19 @@ Updates `holo-config.json`.
 
 #### `200 OK`
 
-Prints immutable HoloPort status data. `zerotier` field is verbatim `zerotier-cli -j info` output.
+Prints immutable HoloPort status data.
+
+- `holo_nixpkgs.revs.channel` is the latest HoloPortOS version
+- `holo_nixpkgs.revs.current_system` is currently installed HoloPortOS version
+- `zerotier` field is verbatim `zerotier-cli -j info` output
 
 ```json
 {
     "holo_nixpkgs": {
-      "url": "https://hydra.holo.host/channel/custom/holo-nixpkgs/develop/holo-nixpkgs",
-      "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
+        "revs": {
+            "channel": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
+            "current_system": "4707080a5cba68e8bc215e22ef1c8e7d8e70791b"
+        }
     },
     "zerotier": {
         "address": "2f07044b7a",  
