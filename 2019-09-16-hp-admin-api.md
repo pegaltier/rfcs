@@ -93,9 +93,11 @@ Prints immutable HoloPort status data.
 ```json
 {
     "holo_nixpkgs": {
-        "revs": {
-            "channel": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
-            "current_system": "4707080a5cba68e8bc215e22ef1c8e7d8e70791b"
+        "channel": {
+            "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8"
+        },
+        "current_system": {
+            "rev": "4707080a5cba68e8bc215e22ef1c8e7d8e70791b"
         }
     },
     "zerotier": {
