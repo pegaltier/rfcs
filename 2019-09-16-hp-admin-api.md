@@ -123,9 +123,7 @@ Prints immutable HoloPort status data. `zerotier` field is verbatim `zerotier-cl
 
 ### `POST /v1/upgrade`
 
-Forces an os version upgrade, which maps onto `nixos-rebuild --upgrade switch`
-
-No params passed. There's a world where we pass the os-version and it installs that, but that's beyond hAppy team needs for launch.
+Forces HoloPortOS upgrade.
 
 #### `200 OK`
 #### `400 Bad Request`
