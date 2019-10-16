@@ -84,13 +84,21 @@ Updates `holo-config.json`.
 
 #### `200 OK`
 
-Prints immutable HoloPort status data. `zerotier` field is verbatim `zerotier-cli -j info` output.
+Prints immutable HoloPort status data.
+
+- `holo_nixpkgs.revs.channel` is the latest HoloPortOS version
+- `holo_nixpkgs.revs.current_system` is currently installed HoloPortOS version
+- `zerotier` field is verbatim `zerotier-cli -j info` output
 
 ```json
 {
     "holo_nixpkgs": {
-      "url": "https://hydra.holo.host/channel/custom/holo-nixpkgs/develop/holo-nixpkgs",
-      "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8",
+        "channel": {
+            "rev": "b13891c28d78f1e916fdefb5edc1d386e4f533c8"
+        },
+        "current_system": {
+            "rev": "4707080a5cba68e8bc215e22ef1c8e7d8e70791b"
+        }
     },
     "zerotier": {
         "address": "2f07044b7a",  
@@ -117,6 +125,15 @@ Prints immutable HoloPort status data. `zerotier` field is verbatim `zerotier-cl
         "versionRev": 12
     }
 }
+```
+
+### `POST /v1/upgrade`
+
+Forces HoloPortOS upgrade.
+
+#### `200 OK`
+#### `400 Bad Request`
+#### `401 Unauthorized`
 
 ## Features not covered 
 
