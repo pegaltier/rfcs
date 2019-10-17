@@ -253,15 +253,14 @@ residential connections, equals to 324 TB/mo. Which on its own will cost:
 - AWS: $25538.56/mo (after discount: $0.15/GB * 10TB + $0.10/GB * 40TB +
   $0.08/GB * 100TB + $0.07/GB * 100TB + $0.06/GB * 74TB)
 - Argo Tunnel: $33177.60/mo
-- OVH: €136.49/mo ([Advance-1][ovh-advance-1] at €66.49/mo + €70/mo for
-  guaranteed 1 Gbps throughput).
+- OVH: €94.99/mo ([Infra-1][ovh-infra-1], baseline 1 Gbps, burst 2 Gbps)
 - Packet: anywhere from $1658.88/mo to $16588.8/mo depending on discount
 
 OVH is the only service on the list that offers unlimited bandwidth. We will
 likely have to use a mix, especially for regions with traditionally expensive
 egress (South America, Africa, Oceania).
 
-[ovh-advance-1]: https://www.ovh.ie/dedicated_servers/advance/adv-1/
+[ovh-infra-1]: https://www.ovh.ie/dedicated_servers/infra/infra-1/
 
 ## Next steps
 
