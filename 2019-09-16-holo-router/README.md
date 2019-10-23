@@ -264,10 +264,6 @@ egress (South America, Africa, Oceania).
 
 ## Next steps
 
-- While Gateway is already written and functioning, Agent and Internal DNS
-  haven't been worked on yet. Obviously, that will have to be addressed before
-  we can proceed any further.
-
 - We should decide which domain to use for Holo hosting. Regardless of choice,
   domain should be only used for that purpose only, for reasons listed in
   [github.io introduction][github-io].
@@ -284,7 +280,7 @@ egress (South America, Africa, Oceania).
   order to lift Let's Encrypt limit of [50 certificates per Registered Domain
   per week][letsencrypt-certificates-per-registered-domain].
 
-- We should set up `CNAME * gateway-N.holo.host` DNS records for Gateway
+- We should set up `CNAME *` Gateway DNS records for Gateway
   deployments. There is no need to change Cloudflare DNS for each node anymore.
 
   Geodistribution is out of scope for now, see [Future work](#future-work)
