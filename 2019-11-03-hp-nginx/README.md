@@ -17,6 +17,8 @@ Nginx needs to handle following connections:
 | `/holfuel/` | [`rate-limit`](#rate-limit) | http | Holofuel static files folder | Serve static files of HoloFuel |
 | `/api/v1/` | [`X-Holo-Admin`](#X-Holo-Admin) | http | port xxx | Redirect to HP Admin Server |
 | `/api/v1/ws/` | [`X-Holo-Admin`](#X-Holo-Admin) | ws | port xxx | Redirect to conductor running HoloFuel and HoloHosting app |
+| `/api/v1/hha/` | [`X-Holo-Admin`](#X-Holo-Admin) | http | port xxx | Redirect to envoy running HoloHosting management API |
+| `/hosting/` | none* | ws | port xxx | Redirect to envoy service handling Holo-hosting |
 
 Return `404 Not Found` otherwise.
 
@@ -42,4 +44,7 @@ Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64
 
 Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
+### none for hosting
+
+Authorization for hosting related traffic is still an open question. Can any user open a websocket connection with Conductor? How can Conductor handle concurrency in requests?
 
