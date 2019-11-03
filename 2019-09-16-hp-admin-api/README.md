@@ -2,23 +2,15 @@
 
 ## HoloPort Admin access
 
-HoloPort will be listening for HP Admin related calls on port 443, because those calls arrive straight from user's device therefore there's no service on the way for port rewrite.
-
-HP Admin service needs to expose following functions:
-- serve static files of the HP Admin UI under `/`
-- expose HP management API under `/api/v1/` (auth required)
-- expose endpoint for websocket handshake under `/api/v1/ws` (auth required)
-- reject any other requests
+Traffic to the API is directed by `hp-nginx` and authorization and versioning is handled there.
 
 ### Authorization
-
-Port 443 is open to internet therefore access authorization is of a high importance. 
 
 Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
 
 Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
-This authorization needs to be calculated in the nginx (or other service responsible for routing traffic) because Holochain Conductor (that receives websocket traffic) does not have capability for authorization check. 
+It is handled by `hp-nginx`.
 
 ## Endpoints
 
