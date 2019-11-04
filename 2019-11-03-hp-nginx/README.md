@@ -11,13 +11,14 @@ Nginx terminates https traffic. TLS Certificate installation is handled by nixOS
 ## Routes
 
 Nginx needs to handle following connections:
+
 | Route | Authorization | Type | Destination | Purpose |
 | ----- | ------------- | ---- | ----------- | ------- |
-| `/`   | [`rate-limit`](#rate-limit) | http | HP Admin static files folder | Serve static files of HP Admin |
-| `/holfuel/` | [`rate-limit`](#rate-limit) | http | Holofuel static files folder | Serve static files of HoloFuel |
+| `/` | [`rate-limit`](#rate-limit) | http | 302 redirect to  | Serve static files of HP Admin |
+| `/admin/`   | [`rate-limit`](#rate-limit) | http | HP Admin static files folder | Serve static files of HP Admin |
+| `/holofuel/` | [`rate-limit`](#rate-limit) | http | HoloFuel static files folder | Serve static files of HoloFuel |
 | `/api/v1/` | [`X-Holo-Admin`](#X-Holo-Admin) | http | port xxx | Redirect to HP Admin Server |
 | `/api/v1/ws/` | [`X-Holo-Admin`](#X-Holo-Admin) | ws | port xxx | Redirect to conductor running HoloFuel and HoloHosting app |
-| `/api/v1/hha/` | [`X-Holo-Admin`](#X-Holo-Admin) | http | port xxx | Redirect to envoy running HoloHosting management API |
 | `/hosting/` | none* | ws | port xxx | Redirect to envoy service handling Holo-hosting |
 
 Return `404 Not Found` otherwise.
