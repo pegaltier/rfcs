@@ -11,6 +11,7 @@ Nginx terminates https traffic. TLS Certificate installation is handled by nixOS
 ## Routes
 
 Nginx needs to handle following connections:
+
 | Route | Authorization | Type | Destination | Purpose |
 | ----- | ------------- | ---- | ----------- | ------- |
 | `/`   | [`rate-limit`](#rate-limit) | http | HP Admin static files folder | Serve static files of HP Admin |
