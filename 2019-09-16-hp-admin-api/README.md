@@ -26,7 +26,7 @@ This authorization needs to be calculated in the nginx (or other service respons
 
 #### `200 OK`
 
-Returns `holo-config.json` data with `seed` field filtered out.
+Gets `holo-config.json` data, except `seed` field.
 
 ```json
 {
@@ -44,23 +44,9 @@ Returns `holo-config.json` data with `seed` field filtered out.
 
 #### `401 Unauthorized`
 
-### `POST /v1/config`
+### `PUT /v1/config`
 
-Updates `holo-config.json`.
-
-```json
-{
-    "admin": {
-        "name": "Holo Naut",
-        "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
-    },
-    "holoportos": {
-        "sshAccess": false
-    }
-}
-```
-
-#### `200 OK`
+Sets `holo-config.json` data, except `seed` field.
 
 ```json
 {
@@ -77,6 +63,7 @@ Updates `holo-config.json`.
 }
 ```
 
+#### `200 OK`
 #### `400 Bad Request`
 #### `401 Unauthorized`
 
