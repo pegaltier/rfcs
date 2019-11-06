@@ -48,6 +48,10 @@ Gets `holo-config.json` data, except `seed` field.
 
 Sets `holo-config.json` data, except `seed` field.
 
+Requires `x-hp-admin-cas` header set to Base64-encoded SHA-512 hash of `GET
+/v1/config` response body. Will only proceed if `holo-config.json` didn't
+change.
+
 ```json
 {
     "admin": {
@@ -66,6 +70,9 @@ Sets `holo-config.json` data, except `seed` field.
 #### `200 OK`
 #### `400 Bad Request`
 #### `401 Unauthorized`
+#### `409 Conflict`
+
+Returned if CAS hash doesn't match current `holo-config.json` state.
 
 ### `GET /v1/status`
 
