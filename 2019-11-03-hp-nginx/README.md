@@ -42,7 +42,14 @@ This is a measure against bandwidth depletion due to unwanted serving of static 
 ### X-Holo-Admin
 HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP-dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check. 
 
-Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature. Payload signed is ???
+Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature of the following payload:
+```
+{
+  "method": ${verb}, // eg. "GET"
+  "request": ${endpoint}, // eg "/api/v1/config"
+  "body": ${body} // eg. "{\"name\": \"My HoloPort Name\"}"
+}
+```
 
 Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
