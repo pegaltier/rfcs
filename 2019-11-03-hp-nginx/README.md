@@ -1,16 +1,16 @@
-# HP Nginx
+# HP Dispatcher
 
 ## The purpose
 
-HoloPort is running multiple services that need to be available to end user. Traffic is directed to the HoloPort by holo-router over the ZeroTier network. HoloPort needs to have a 443 inbound port open on the ZeroTier network interface. On that port (443) HP-nginx is listening.
+HoloPort is running multiple services that need to be available to end user. Traffic is directed to the HoloPort by holo-router over the ZeroTier network. HoloPort needs to have a 443 inbound port open on the ZeroTier network interface. On that port (443) HP-dispatcher (eg. implemented via nginx) is listening.
 
 ## TLS
 
-Nginx terminates https traffic. TLS Certificate installation is handled by nixOS and Let's Encrypt SSL service.
+HP-dispatcher terminates https traffic. TLS Certificate installation is handled by nixOS and Let's Encrypt SSL service.
 
 ## Routes
 
-Nginx needs to handle following connections:
+HP-dispatcher needs to handle following connections:
 
 | Route | Authorization | Type | Destination | Purpose |
 | ----- | ------------- | ---- | ----------- | ------- |
@@ -37,9 +37,10 @@ location / {
     limit_req zone=zone1 burst=30;
 }
 ```
+This is a measure against bandwidth depletion due to unwanted serving of static files from HoloPort, as the are meant to be served to HoloPort Admin alone.
 
 ### X-Holo-Admin
-HP Admin related calls have to be secured with the Signature-based authorization. It needs to be calculated in HP-nginx because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check. 
+HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP-dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check. 
 
 Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature. Payload signed is ???
 
