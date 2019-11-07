@@ -54,7 +54,7 @@ Authorization for hosting related traffic is still an open question. Can any use
 The `name` in `<ip>:<port> "<name>"` corrosponds to the port number in that it matches the alpha/numeric mapping
 of English telephone keypads (eg. https://phonespell.org).
 
-### `*.*.*.*:443` Reverse Proxy
+### `0.0.0.0:443` Reverse Proxy
 
 **Supported protocols**
 - HTTPS
