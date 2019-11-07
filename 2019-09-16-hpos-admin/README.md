@@ -1,11 +1,11 @@
-# HP Admin HTTP API
+# HPOS Admin HTTP API
 
-## HoloPort Admin access
+## Access
 
-HoloPort will be listening for HP Admin related calls on port 443, because those calls arrive straight from user's device therefore there's no service on the way for port rewrite.
+HoloPortOS will be listening for HPOS Admin related calls on port 443, because those calls arrive straight from user's device therefore there's no service on the way for port rewrite.
 
-HP Admin service needs to expose following functions:
-- serve static files of the HP Admin UI under `/`
+HPOS Admin service needs to expose following functions:
+- serve static files of the HPOS Admin UI under `/`
 - expose HP management API under `/api/v1/` (auth required)
 - expose endpoint for websocket handshake under `/api/v1/ws` (auth required)
 - reject any other requests
@@ -131,7 +131,7 @@ Forces HoloPortOS upgrade.
 
 ## Features not covered 
 
-### HoloPort networking ports
+### HoloPortOS networking ports
 
 Since we are tunneling to the machine, it is recommended to deprecate the
 requirement for changing ports. The user should not have any need to change
