@@ -26,7 +26,7 @@ This authorization needs to be calculated in the nginx (or other service respons
 
 #### `200 OK`
 
-Gets `holo-config.json` data, except `seed` field.
+Gets `hpos-state.json` `v1.config`.
 
 ```json
 {
@@ -46,7 +46,7 @@ Gets `holo-config.json` data, except `seed` field.
 
 ### `PUT /v1/config`
 
-Sets `holo-config.json` data, except `seed` field.
+Sets `hpos-state.json` `v1.config`.
 
 Requires `x-hp-admin-cas` header set to Base64-encoded SHA-512 hash of `GET
 /v1/config` response body. Will only proceed if `holo-config.json` didn't
@@ -72,7 +72,7 @@ change.
 #### `401 Unauthorized`
 #### `409 Conflict`
 
-Returned if CAS hash doesn't match current `holo-config.json` state.
+Returned if CAS hash doesn't match current `hpos-state.json` `v1.config`.
 
 ### `GET /v1/status`
 
