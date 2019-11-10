@@ -1,24 +1,10 @@
-# HP Admin HTTP API
+# HPOS Admin HTTP API
 
-## HoloPort Admin access
+## Access
 
-HoloPort will be listening for HP Admin related calls on port 443, because those calls arrive straight from user's device therefore there's no service on the way for port rewrite.
-
-HP Admin service needs to expose following functions:
-- serve static files of the HP Admin UI under `/`
-- expose HP management API under `/api/v1/` (auth required)
-- expose endpoint for websocket handshake under `/api/v1/ws` (auth required)
-- reject any other requests
-
-### Authorization
-
-Port 443 is open to internet therefore access authorization is of a high importance. 
-
-Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
-
-Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
-
-This authorization needs to be calculated in the nginx (or other service responsible for routing traffic) because Holochain Conductor (that receives websocket traffic) does not have capability for authorization check. 
+HoloPortOS will be listening for HPOS Admin related calls on port 443, because
+those calls arrive straight from user's device therefore there's no service on
+the way for port rewrite.
 
 ## Endpoints
 
@@ -26,7 +12,7 @@ This authorization needs to be calculated in the nginx (or other service respons
 
 #### `200 OK`
 
-Gets `holo-config.json` data, except `seed` field.
+Gets `hpos-state.json` `v1.config`.
 
 ```json
 {
@@ -46,7 +32,11 @@ Gets `holo-config.json` data, except `seed` field.
 
 ### `PUT /v1/config`
 
-Sets `holo-config.json` data, except `seed` field.
+Sets `hpos-state.json` `v1.config`.
+
+Requires `x-hp-admin-cas` header set to Base64-encoded SHA-512 hash of `GET
+/v1/config` response body. Will only proceed if `holo-config.json` didn't
+change.
 
 ```json
 {
@@ -66,6 +56,9 @@ Sets `holo-config.json` data, except `seed` field.
 #### `200 OK`
 #### `400 Bad Request`
 #### `401 Unauthorized`
+#### `409 Conflict`
+
+Returned if CAS hash doesn't match current `hpos-state.json` `v1.config`.
 
 ### `GET /v1/status`
 
@@ -124,7 +117,7 @@ Forces HoloPortOS upgrade.
 
 ## Features not covered 
 
-### HoloPort networking ports
+### HoloPortOS networking ports
 
 Since we are tunneling to the machine, it is recommended to deprecate the
 requirement for changing ports. The user should not have any need to change
