@@ -36,7 +36,7 @@ D --> E("Development");
 - Proposal:
     - developer creates `README.md` doc with proposal of the architecture
     - this doc is located in the folder with descriptive name (e.g. `RFCs-etiquette`, no date here)
-    - it's pushed to the github on new branch named `yyyymm/subject` (e.g. `201911/RFCs-etiquette`)
+    - it's pushed to the github on new branch named `yyyy-mm-dd-subject` (e.g. `2019-11-12-RFCs-etiquette`)
     - dev creates PR with descriptive name (e.g. `Propose RFC etiquette`) and labels it `open`
 
 - Open for comments:
@@ -58,6 +58,7 @@ D --> E("Development");
     - an approval from all the reviewers is required
     - once PR is merged it becomes an accepted architecture
     - the label from PR is removed
+    - branches that are merged and stale are deleted
     - at this stage an architected piece is ready for development
 
 - Development:
