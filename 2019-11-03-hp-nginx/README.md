@@ -49,6 +49,7 @@ This can be achieved using auth_request module of nginx:
   ...
 
   location /auth {
+    internal;
     proxy_pass http://127.0.0.1:2884;
     proxy_set_header X-Original-URI $request_uri;
   }
@@ -72,7 +73,7 @@ Authorization for hosting related traffic is still an open question. Can any use
 
 ## Transport Layer Reservations
 
-The `name` in `<ip>:<port> "<name>"` corrosponds to the port number in that it matches the alpha/numeric mapping
+The `name` in `<ip>:<port> "<name>"` corresponds to the port number in that it matches the alpha/numeric mapping
 of English telephone keypads (eg. https://phonespell.org).
 
 ### `0.0.0.0:443` Reverse Proxy
