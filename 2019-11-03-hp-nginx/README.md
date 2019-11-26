@@ -40,13 +40,26 @@ location / {
 This is a measure against bandwidth depletion due to unwanted serving of static files from HoloPort, as the are meant to be served to HoloPort Admin alone.
 
 ### X-Holo-Admin
-HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP-dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check. 
+HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP-dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check.
+
+This can be achieved using auth_request module of nginx:
+```
+  ...
+    auth_request /auth;
+  ...
+
+  location /auth {
+    proxy_pass http://127.0.0.1:2884;
+    proxy_set_header X-Original-URI $request_uri;
+  }
+```
+where `/auth` is the service that verifies authorization.
 
 Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature of the following payload:
 ```
 {
   "method": ${verb}, // eg. "GET"
-  "request": ${endpoint}, // eg "/api/v1/config"
+  "request": ${URI with arguments}, // eg. "/api/v1/config?a=b"
   "body": ${body} // eg. "{\"name\": \"My HoloPort Name\"}"
 }
 ```
