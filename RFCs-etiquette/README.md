@@ -37,7 +37,7 @@ D --> E("Development");
     - our architectural discussions are stored in [RFCs GitHub repo](https://github.com/Holo-Host/rfcs)
     - each proposal of architecture is located in the folder with descriptive name (e.g. `RFCs-etiquette`, no date here)
     - developer creates in this folder `README.md` doc with proposal
-    - it's pushed to the github on new branch named `yyyy-mm-dd-subject` (e.g. `2019-11-12-RFCs-etiquette`)
+    - it's pushed to the GitHub on new branch named `yyyy-mm-dd-subject` (e.g. `2019-11-12-RFCs-etiquette`)
     - dev creates PR with descriptive name (e.g. `Propose RFC etiquette`) and labels it `open`
 
 - Open for comments:
