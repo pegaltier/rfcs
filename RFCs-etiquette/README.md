@@ -1,4 +1,4 @@
-## RFC for RFCs
+## RFCs Etiquette
 
 Based on team wide conversations I wanted to suggest the process (or as Matt named it an Etiquette) for handling RFCs. We found the institution of RFCs proposed by Yegor extremely useful. This conversation is an attempt to solidify a second, upgraded iteration.
 
@@ -34,7 +34,7 @@ C --> D("Merging");
 D --> E("Development");
 ```
 - Proposal:
-    - our architectural discussions are stored in [RFCs github repo](https://github.com/Holo-Host/rfcs)
+    - our architectural discussions (or any other subject that require collective decision) are stored in [RFCs github repo](https://github.com/Holo-Host/rfcs)
     - each proposal of architecture is located in the folder with descriptive name (e.g. `RFCs-etiquette`, no date here)
     - developer creates in this folder `README.md` doc with proposal
     - it's pushed to the github on new branch named `yyyy-mm-dd-subject` (e.g. `2019-11-12-RFCs-etiquette`)
