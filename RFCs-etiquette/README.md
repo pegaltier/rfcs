@@ -1,6 +1,6 @@
 ## RFC for RFCs
 
-Based on team wide conversations I wanted to suggest the process (or as Matt named it an Etiquette) for handling RFCs. We found the institution of RFCs proposed by Yegor extremely useful. This conversation is an attempt to solidify a second, upgraded iteration.
+Based on team-wide conversations I wanted to suggest the process for handling RFCs. We found the institution of RFCs extremely useful. This conversation is an attempt to solidify a second, upgraded iteration.
 
 ### Dual purpose of RFC
 
