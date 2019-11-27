@@ -88,6 +88,11 @@ of English telephone keypads (eg. https://phonespell.org).
 - HTTP
 - WebSocket
 
+### `localhost:9676 "worm"` Wormhole
+
+**Supported protocols**
+- HTTP
+
 ### `localhost:23646 "admin"` Admin Server
 
 **Supported protocols**
