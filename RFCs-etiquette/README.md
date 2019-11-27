@@ -34,7 +34,7 @@ C --> D("Merging");
 D --> E("Development");
 ```
 - Proposal:
-    - our architectural discussions are stored in [RFCs github repo](https://github.com/Holo-Host/rfcs)
+    - our architectural discussions are stored in [RFCs GitHub repo](https://github.com/Holo-Host/rfcs)
     - each proposal of architecture is located in the folder with descriptive name (e.g. `RFCs-etiquette`, no date here)
     - developer creates in this folder `README.md` doc with proposal
     - it's pushed to the github on new branch named `yyyy-mm-dd-subject` (e.g. `2019-11-12-RFCs-etiquette`)
