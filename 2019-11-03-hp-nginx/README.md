@@ -2,24 +2,25 @@
 
 ## The purpose
 
-HoloPort is running multiple services that need to be available to end user. Traffic is directed to the HoloPort by holo-router over the ZeroTier network. HoloPort needs to have a 443 inbound port open on the ZeroTier network interface. On that port (443) HP-dispatcher (eg. implemented via nginx) is listening.
+HoloPort is running multiple services that need to be available to end user. Traffic is directed to the HoloPort by Holo Router over the ZeroTier network. HoloPort needs to have a 443 inbound port open on the ZeroTier network interface. On that port (443) HP Dispatcher (eg. implemented via nginx) is listening.
 
 ## TLS
 
-HP-dispatcher terminates https traffic. TLS Certificate installation is handled by nixOS and Let's Encrypt SSL service.
+HP Dispatcher terminates https traffic. TLS Certificate installation is handled by nixOS and Let's Encrypt service.
 
 ## Routes
 
-HP-dispatcher needs to handle following connections:
+HP Dispatcher needs to handle following connections:
 
 | Route         | Authorization                   | Type | Destination                  | Purpose                                      |
 | -----         | -------------                   | ---- | -----------                  | -------                                      |
 | `/`           | [`rate-limit`](#rate-limit)     | http | 302 redirect to              | Redirect to `/admin/`                        |
 | `/admin/`     | [`rate-limit`](#rate-limit)     | http | HP Admin static files folder | Serve static files of HP Admin               |
 | `/holofuel/`  | [`rate-limit`](#rate-limit)     | http | HoloFuel static files folder | Serve static files of HoloFuel               |
-| `/api/v1/`    | [`X-Holo-Admin`](#X-Holo-Admin) | http | port 23646                   | Proxy to HP Admin Server                     |
-| `/api/v1/ws/` | [`X-Holo-Admin`](#X-Holo-Admin) | ws   | port 42233                   | Proxy to Conductor Admin Instances           |
-| `/hosting/`   | none*                           | ws   | port 4656                    | Proxy to Envoy service handling Holo-hosting |
+| `/api/v1/`    | [`X-Hpos-Admin-Signature`](#X-Hpos-Admin-Signature) | http | Unix domain socket | Proxy to HP Admin Server                     |
+| `/api/v1/ws/` | [`X-Hpos-Admin-Signature`](#X-Hpos-Admin-Signature) | ws   | port 42233                   | Proxy to Conductor Admin Instances           |
+| `/auth/`   | none - internal | http | port 2884                    | Hpos-Admin-Signature verification service |
+| `/v1/hosting/`   | none*                           | ws   | port 4656                    | Proxy to Envoy service handling Holo-hosting |
 
 Return `404 Not Found` otherwise.
 
@@ -39,8 +40,8 @@ location / {
 ```
 This is a measure against bandwidth depletion due to unwanted serving of static files from HoloPort, as the are meant to be served to HoloPort Admin alone.
 
-### X-Holo-Admin
-HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP-dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check.
+### X-Hpos-Admin-Signature
+HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP Dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check.
 
 This can be achieved using auth_request module of nginx:
 ```
@@ -56,7 +57,7 @@ This can be achieved using auth_request module of nginx:
 ```
 where `/auth` is the service that verifies authorization.
 
-Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature of the following payload:
+Authorization schema is `X-Hpos-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature of the following payload:
 ```
 {
   "method": ${verb}, // eg. "GET"
@@ -65,7 +66,7 @@ Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64
 }
 ```
 
-Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
+Example: `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
 ### none for hosting
 
@@ -89,11 +90,6 @@ of English telephone keypads (eg. https://phonespell.org).
 - WebSocket
 
 ### `localhost:9676 "worm"` Wormhole
-
-**Supported protocols**
-- HTTP
-
-### `localhost:23646 "admin"` Admin Server
 
 **Supported protocols**
 - HTTP
