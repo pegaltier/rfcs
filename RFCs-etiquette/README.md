@@ -1,6 +1,6 @@
 ## RFCs Etiquette
 
-Based on team wide conversations I wanted to suggest the process (or as Matt named it an Etiquette) for handling RFCs. We found the institution of RFCs proposed by Yegor extremely useful. This conversation is an attempt to solidify a second, upgraded iteration.
+Based on team-wide conversations I wanted to suggest the process for handling RFCs. We found the institution of RFCs extremely useful. This conversation is an attempt to solidify a second, upgraded iteration.
 
 ### Dual purpose of RFC
 
@@ -18,8 +18,9 @@ To serve those purposes well the process needs to be:
 I wanted to suggest introduction of the following code of conduct:
 - [ ] each piece of architecture lives in the separate folder in the root of RFCs repo
 - [ ] each change to the architecture (or a new proposal) lives on a separate PR
-- [ ] each PR has a maintainer that creates initial proposal and is responsible for keeping RFC up to date
-- [ ] devs that want to participate in the discussion add themselves as code reviewers to the PR and their approval is necessary for closing PR
+- [ ] each PR has a **Maintainer** that creates initial proposal and is responsible for keeping RFC up to date
+- [ ] devs that want to participate in the discussion add themselves as code reviewers (**Stakeholders**) to the PR and their approval is necessary for closing PR
+- [ ] by becoming a Stakeholder devs make a commitment to maintain the conversation and strive to reach agreement across the team
 - [ ] the process is divided into [stages](#Stages) and PR is labeled to reflect a current [stage](#Stages)
 - [ ] each [stage](#Stages) is time-boxed and current deadline is displayed in the PR description (date + time UTC)
 - [ ] PR should be closed before development starts
@@ -37,22 +38,22 @@ D --> E("Development");
     - our architectural discussions (or any other subject that require collective decision) are stored in [RFCs github repo](https://github.com/Holo-Host/rfcs)
     - each proposal of architecture is located in the folder with descriptive name (e.g. `RFCs-etiquette`, no date here)
     - developer creates in this folder `README.md` doc with proposal
-    - it's pushed to the github on new branch named `yyyy-mm-dd-subject` (e.g. `2019-11-12-RFCs-etiquette`)
+    - it's pushed to the GitHub on new branch named `yyyy-mm-dd-subject` (e.g. `2019-11-12-RFCs-etiquette`)
     - dev creates PR with descriptive name (e.g. `Propose RFC etiquette`) and labels it `open`
 
 - Open for comments:
     - this is a divergent stage, where everyone interested starts conversation
-    - by default it should last 7 days and can be changed if needed
+    - by default it lasts 7 days but can be changed per maintainer decision
     - PR is labeled `open`
     - PR description is updated with the deadline for this stage
     - a new commit with changes can be pushed by maintainer after a conversation is resolved
 
 - Last call:
     - this is a convergent stage where the goal should be to resolve all outstanding conversations
-    - by default it should last 2 days and can be changed if needed
+    - by default it lasts 2 days but can be changed per maintainer decision
+    - stakeholders can extend the duration of this stage if needed while respecting external limits (like a deadline of the project)
     - PR is labeled `last call`
     - PR description is updated with the deadline for this stage
-    - **no new conversation should be started**
 
 - Merging:
     - maintainer merges PR after resolving all the conversations
