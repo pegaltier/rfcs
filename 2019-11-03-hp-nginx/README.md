@@ -60,9 +60,9 @@ where `/auth` is the service that verifies authorization.
 Authorization schema is `X-Hpos-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature of the following payload:
 ```
 {
-  "method": ${verb}, // eg. "GET"
+  "method": ${verb}, // to lowercase, eg "get"
   "request": ${URI with arguments}, // eg. "/api/v1/config?a=b"
-  "body": ${body} // eg. "{\"name\": \"My HoloPort Name\"}"
+  "body": ${body} // case sensitive, eg. "{\"name\": \"My HoloPort Name\"}"
 }
 ```
 
