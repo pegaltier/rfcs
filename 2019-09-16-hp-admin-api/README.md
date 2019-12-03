@@ -1,16 +1,8 @@
-# HP Admin HTTP API
+# HPOS Admin HTTP API
 
-## HoloPort Admin access
+## Access
 
-Traffic to the API is directed by `hp-nginx` and authorization and versioning is handled there.
-
-### Authorization
-
-Authorization schema is `X-Holo-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature.
-
-Example: `X-Holo-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
-
-It is handled by `hp-nginx`.
+Traffic to the API is directed by `HP Dispatcher` and access authorization and versioning is handled there.
 
 ## Endpoints
 
@@ -18,7 +10,7 @@ It is handled by `hp-nginx`.
 
 #### `200 OK`
 
-Returns `holo-config.json` data with `seed` field filtered out.
+Gets `hpos-state.json` `v1.config`.
 
 ```json
 {
@@ -36,23 +28,13 @@ Returns `holo-config.json` data with `seed` field filtered out.
 
 #### `401 Unauthorized`
 
-### `POST /v1/config`
+### `PUT /v1/config`
 
-Updates `holo-config.json`.
+Sets `hpos-state.json` `v1.config`.
 
-```json
-{
-    "admin": {
-        "name": "Holo Naut",
-        "public_key": "z4NA8s70Wyaa2kckSQ3S3V3eIi8yLPFFdad9L0CY3iw"
-    },
-    "holoportos": {
-        "sshAccess": false
-    }
-}
-```
-
-#### `200 OK`
+Requires `x-hp-admin-cas` header set to Base64-encoded SHA-512 hash of `GET
+/v1/config` response body. Will only proceed if `holo-config.json` didn't
+change.
 
 ```json
 {
@@ -69,8 +51,12 @@ Updates `holo-config.json`.
 }
 ```
 
+#### `200 OK`
 #### `400 Bad Request`
 #### `401 Unauthorized`
+#### `409 Conflict`
+
+Returned if CAS hash doesn't match current `hpos-state.json` `v1.config`.
 
 ### `GET /v1/status`
 
@@ -129,7 +115,7 @@ Forces HoloPortOS upgrade.
 
 ## Features not covered 
 
-### HoloPort networking ports
+### HoloPortOS networking ports
 
 Since we are tunneling to the machine, it is recommended to deprecate the
 requirement for changing ports. The user should not have any need to change
