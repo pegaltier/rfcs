@@ -2,9 +2,7 @@
 
 ## Access
 
-HoloPortOS will be listening for HPOS Admin related calls on port 443, because
-those calls arrive straight from user's device therefore there's no service on
-the way for port rewrite.
+Traffic to the API is directed by `HP Dispatcher` and access authorization and versioning is handled there.
 
 ## Endpoints
 
