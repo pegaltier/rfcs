@@ -18,7 +18,7 @@ HP Dispatcher needs to handle following connections:
 | `/admin/`     | [`rate-limit`](#rate-limit)     | http | HP Admin static files folder | Serve static files of HP Admin               |
 | `/holofuel/`  | [`rate-limit`](#rate-limit)     | http | HoloFuel static files folder | Serve static files of HoloFuel               |
 | `/api/v1/`    | [`X-Hpos-Admin-Signature`](#X-Hpos-Admin-Signature) | http | Unix domain socket | Proxy to HP Admin Server                     |
-| `/api/v1/ws/` | [`X-Hpos-Admin-Signature`](#X-Hpos-Admin-Signature) | ws   | port 42233                   | Proxy to Conductor Admin Instances           |
+| `/api/v1/ws/` | [`wss-signature`](#wss-signature) | ws   | port 42233                   | Proxy to Conductor Admin Instances           |
 | `/auth/`   | none - internal | http | port 2884                    | Hpos-Admin-Signature verification service |
 | `/v1/hosting/`   | none*                           | ws   | port 4656                    | Proxy to Envoy service handling Holo-hosting |
 
@@ -41,7 +41,7 @@ location / {
 This is a measure against bandwidth depletion due to unwanted serving of static files from HoloPort, as the are meant to be served to HoloPort Admin alone.
 
 ### X-Hpos-Admin-Signature
-HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP Dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check.
+HP Admin related calls have to be secured with the Signature-based authorization.
 
 This can be achieved using auth_request module of nginx:
 ```
@@ -67,6 +67,15 @@ Authorization schema is `X-Hpos-Admin-Signature` HTTP header, followed by Base64
 ```
 
 Example: `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
+
+### wss-signature
+Websocket traffic to Holochain Conductor needs to be authorized inside HP Dispatcher, because Holochain Conductor does not have capability for authorization check. On the other hand [browsers do not allow for setting custom headers](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket) for websocket Upgrade requests. As a consequence [`X-Hpos-Admin-Signature`](#X-Hpos-Admin-Signature) authorization schema has to be modified to work for websocket traffic.
+
+This can be achieved by wrapping `X-Hpos-Admin-Signature` HTTP header into cookie and setting it before opening wss connection:
+```
+document.cookie = 'X-Hpos-Admin-Signature=' + signature + '; path=/api/v1/ws/';
+```
+On the server side HP Dispatcher rewrites cookie to `X-Hpos-Admin-Signature` HTTP header and follows the usual [`X-Hpos-Admin-Signature`](#X-Hpos-Admin-Signature) authorization procedure.
 
 ### none for hosting
 
