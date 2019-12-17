@@ -26,7 +26,8 @@ Return `404 Not Found` otherwise.
 
 ## Authentication / Authorization
 
-Depending on the service there are various ways for authorizing traffic.
+Authentication and assertion are enforced by `dispatcher` via Auth service.  Depending on the
+service there are various ways for authorizing traffic.
 
 ### rate-limit
 
@@ -38,12 +39,42 @@ location / {
     limit_req zone=zone1 burst=30;
 }
 ```
-This is a measure against bandwidth depletion due to unwanted serving of static files from HoloPort, as the are meant to be served to HoloPort Admin alone.
 
-### X-Hpos-Admin-Signature
-HP Admin related calls have to be secured with the Signature-based authorization. It needs to be handled by HP Dispatcher because Holochain Conductor, which receives websocket traffic, does not have capability for authorization check.
+This is a measure against bandwidth depletion due to unwanted serving of static files from HoloPort,
+as the are meant to be served to HoloPort Admin alone.
 
-This can be achieved using auth_request module of nginx:
+
+### `X-Hpos-Admin-Signature`
+HP Admin related calls have to be secured with the Signature-based authorization. This signature is
+a combination of time modulo `x` and selected HTTP properties to authenticate and assert the
+authority of requests.
+
+The signature value can be either an HTTP Header, or in the query params in that order of precedence.
+
+**Examples**
+1. case-insensitive HTTP HEADER (eg. `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`)
+2. case-sensitive query param (eg. `?X-Hpos-Admin-Signature=EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`)
+
+HTTP Header is required to have a Base64-encoded Ed25519 signature of the appropriate payload.
+
+```json
+{
+  "date": ${timestamp}, // modulo N              eg. 12736462100
+  "method": ${verb},    // to lowercase          eg. "get"
+  "request": ${URI},    // include query params  eg. "/api/v1/config?a=b"
+  "body": ${body}       // case sensitive        eg. "{\"name\": \"My HoloPort Name\"}"
+}
+```
+
+Example
+- `X-Hpos-Admin-Authorization: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
+
+
+#### Authentication Service `/auth`
+Signature verifcation is handled by the Authentication service.  This can be achieved using
+`auth_request` module of nginx:
+
+**Nginx configuration example**
 ```
   ...
     auth_request /auth;
@@ -57,20 +88,10 @@ This can be achieved using auth_request module of nginx:
 ```
 where `/auth` is the service that verifies authorization.
 
-Authorization schema is `X-Hpos-Admin-Signature` HTTP header, followed by Base64-encoded Ed25519 signature of the following payload:
-```
-{
-  "method": ${verb}, // to lowercase, eg "get"
-  "request": ${URI with arguments}, // eg. "/api/v1/config?a=b"
-  "body": ${body} // case sensitive, eg. "{\"name\": \"My HoloPort Name\"}"
-}
-```
-
-Example: `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
-
 ### none for hosting
 
 Authorization for hosting related traffic is still an open question. Can any user open a websocket connection with Conductor? How can Conductor handle concurrency in requests?
+
 
 ## Transport Layer Reservations
 
