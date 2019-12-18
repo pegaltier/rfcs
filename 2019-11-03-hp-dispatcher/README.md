@@ -26,7 +26,7 @@ Return `404 Not Found` otherwise.
 
 ## Authentication / Authorization
 
-Authentication and assertion are enforced by `dispatcher` via Auth service.  Depending on the
+Authentication and assertion are enforced by `dispatcher`.  Depending on the
 service there are various ways for authorizing traffic.
 
 ### rate-limit
