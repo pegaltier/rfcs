@@ -52,7 +52,7 @@ authority of requests.
 The signature value can be either an HTTP Header, or in the query params in that order of precedence.
 
 **Examples**
-1. case-insensitive HTTP HEADER (eg. `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`)
+1. HTTP HEADER (case-insensitive header name) (eg. `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`)
 2. case-sensitive query param (eg. `?X-Hpos-Admin-Signature=EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`)
 
 HTTP Header is required to have a Base64-encoded Ed25519 signature of the appropriate payload.
