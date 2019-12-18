@@ -46,20 +46,20 @@ as the are meant to be served to HoloPort Admin alone.
 
 ### `X-Hpos-Admin-Signature`
 HP Admin related calls have to be secured with the Signature-based authorization. This signature is
-a combination of time modulo `x` and selected HTTP properties to authenticate and assert the
-authority of requests.
+a combination of selected HTTP properties to authenticate and assert the authority of requests.
 
 The signature value can be either an HTTP Header, or in the query params in that order of precedence.
 
 **Examples**
-1. HTTP HEADER (case-insensitive header name) (eg. `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`)
-2. case-sensitive query param (eg. `?X-Hpos-Admin-Signature=EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`)
+1. HTTP Header (case-insensitive header name)
+   - eg. `X-Hpos-Admin-Signature: EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
+2. Query param
+   - eg. `?X-Hpos-Admin-Signature=EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
 HTTP Header is required to have a Base64-encoded Ed25519 signature of the appropriate payload.
 
-```json
+```javascript
 {
-  "date": ${timestamp}, // modulo N              eg. 12736462100
   "method": ${verb},    // to lowercase          eg. "get"
   "request": ${URI},    // exclude query params  eg. "/api/v1/config"
   "body": ${body}       // case sensitive        eg. "{\"name\": \"My HoloPort Name\"}"
