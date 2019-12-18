@@ -61,7 +61,7 @@ HTTP Header is required to have a Base64-encoded Ed25519 signature of the approp
 {
   "date": ${timestamp}, // modulo N              eg. 12736462100
   "method": ${verb},    // to lowercase          eg. "get"
-  "request": ${URI},    // include query params  eg. "/api/v1/config?a=b"
+  "request": ${URI},    // exclude query params  eg. "/api/v1/config"
   "body": ${body}       // case sensitive        eg. "{\"name\": \"My HoloPort Name\"}"
 }
 ```
