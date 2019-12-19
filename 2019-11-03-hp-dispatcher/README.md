@@ -56,7 +56,7 @@ The signature value can be either an HTTP Header, or in the query params in that
 2. Query param
    - eg. `?X-Hpos-Admin-Signature=EGeYSAmjxp1kNBzXAR2kv7m3BNxyREZnVwSfh3FX7Ew`
 
-HTTP Header is required to have a Base64-encoded Ed25519 signature of the appropriate payload.
+The value must be a Base64-encoded Ed25519 signature of the appropriate payload.
 
 ```javascript
 {
