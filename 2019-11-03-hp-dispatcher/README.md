@@ -41,7 +41,7 @@ location / {
 ```
 
 This is a measure against bandwidth depletion due to unwanted serving of static files from HoloPort,
-as the are meant to be served to HoloPort Admin alone.
+as they are meant to be served to HoloPort Admin alone.
 
 
 ### `X-Hpos-Admin-Signature`
