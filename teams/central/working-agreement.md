@@ -21,7 +21,7 @@ that merges into the target PR.
 
 
 ***Code formatting***
-- javascript - *no concensus*
+- javascript - `prettier`
 - rust - `cargo fmt`
 - nix - [nixpkgs-fmt](https://github.com/nix-community/nixpkgs-fmt)
 
